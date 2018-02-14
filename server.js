@@ -1,7 +1,7 @@
 var telegramBot = require('node-telegram-bot-api');
 var token = '541428253:AAEQXJyWUkj79-hZzWMe4QYUk3n6OHxw6lQ', bot = new TelegramBot(token, {polling: true});
 
-bot.on('message', function (msg) {
+bot.on('message', function (msg, match) {
     var chatId = msg.chat.id;
     var userId = msg.from.id;
     var text = match[1];
