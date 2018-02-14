@@ -12,7 +12,7 @@ bot.onText(//echo (.+)/, function (msg, match) {
 bot.on('message', function (msg) {
     var chatId = msg.chat.id;
     // Фотография может быть: путь к файлу, поток(stream) или параметр file_id
-    var photo = 'cats.png';
+    var photo = '1069078_original.jpg';
     bot.sendPhoto(chatId, photo, {caption: 'Милые котята'});
 });
 
