@@ -5,18 +5,7 @@ var fs = require('fs')
 var MongoClient = require("mongodb").MongoClient;
 
 url = 'mongodb://telegram-bot:ewr3377nd@ds235388.mlab.com:35388/telegram_bot';
-mongoClient.connect(url, function(err, db){
-    var collection = db.collection("message-logs");
-    var user = {name: "Tom", age: 23};
-    collection.insertOne(user, function(err, result){
-         
-        if(err){ 
-            return console.log(err);
-        }
-        console.log(result.ops);
-        db.close();
-    });	
-});
+
 
 bot.on('message', function(msg) {
   const chatId = msg.chat.id;
