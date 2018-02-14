@@ -7,7 +7,7 @@ bot.on('message', function (msg, match) {
     var text = match[1];
     var time = match[2];
 	
-	bot.sendMessage(userId, text+' '+time);
+	bot.sendMessage(userId, 'adsfasdfsdf');
 });
 
 
