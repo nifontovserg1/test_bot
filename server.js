@@ -10,6 +10,8 @@ bot.on('message', function (msg, match) {
         });
 });
 
+console.log('tt');
+
 var http = require('http'),
     port = process.env.PORT || 8001;
  
