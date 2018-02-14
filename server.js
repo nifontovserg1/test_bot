@@ -4,10 +4,8 @@ var token = '541428253:AAEQXJyWUkj79-hZzWMe4QYUk3n6OHxw6lQ', bot = new TelegramB
 bot.on('message', function (msg, match) {
     var chatId = msg.chat.id;
     var userId = msg.from.id;
-    var text = match[1];
-    var time = match[2];
 	
-	bot.sendMessage(userId, 'adsfasdfsdf');
+	bot.sendMessage(userId, msg.text);
 });
 
 
