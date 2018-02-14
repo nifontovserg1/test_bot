@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/nifontovserg1/test_bot/issues"
   },
-  "homepage": "https://github.com/nifontovserg1/test_bot#readme"
+  "homepage": "https://github.com/nifontovserg1/test_bot#readme",
+  "dependencies": {
+    "node-telegram-bot-api": "^0.30.0"
+  }
 }
