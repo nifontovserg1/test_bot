@@ -3,10 +3,11 @@ var token = '541428253:AAEQXJyWUkj79-hZzWMe4QYUk3n6OHxw6lQ';
 var bot = new TelegramBot(token, {polling: true});
 
 
-bot.on('message', function (msg) {
-    var chatId = msg.chat.id;
-    console.log(msg);
-    bot.sendMessage(chatId, "Hello!", {caption: "I'm a bot!"});
+bot.on('message', (msg) => {
+  const chatId = msg.chat.id;
+ 
+  // send a message to the chat acknowledging receipt of their message
+  bot.sendMessage(chatId, 'Received your message');
 });
 
 
