@@ -4,7 +4,7 @@ var bot = new TelegramBot(token, {polling: true});
 var fs = require('fs')
 var MongoClient = require("mongodb").MongoClient;
 
-url = 'mongodb://telegram-bot:ewr3377nd@ds235388.mlab.com:35388/telegram_bot';
+
 
 
 bot.on('message', function(msg) {
