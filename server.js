@@ -5,7 +5,9 @@ var bot = new TelegramBot(token, {polling: true});
 bot.on('message', function (msg, match) {
 	var fromId = msg.chat.id;
     var resp = match[1];	
-	bot.sendMessage(fromId, resp);
+	bot.sendMessage(fromId, resp).catch(function(error){ // Catch possible error
+            console.error(error);
+        });
 });
 
 var http = require('http'),
