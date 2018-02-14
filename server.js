@@ -3,7 +3,7 @@ var token = '541428253:AAEQXJyWUkj79-hZzWMe4QYUk3n6OHxw6lQ';
 var bot = new TelegramBot(token, {polling: true});
 
 bot.on('message', function (msg, match) {
-	var fromId = msg.from.id;
+	var fromId = msg.chat.id;
     var resp = match[1];	
 	bot.sendMessage(fromId, resp);
 });
