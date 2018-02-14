@@ -2,15 +2,19 @@ var TelegramBot = require('node-telegram-bot-api');
 var token = '541428253:AAEQXJyWUkj79-hZzWMe4QYUk3n6OHxw6lQ'; 
 var bot = new TelegramBot(token, {polling: true});
 
-bot.on('message', function (msg, match) {
-	var fromId = msg.chat.id;
-    var resp = match[1];	
-	bot.sendMessage(fromId, resp).catch(function(error){ // Catch possible error
-            console.error(error);
-        });
+bot.onText(//echo (.+)/, function (msg, match) {
+    var fromId = msg.from.id;
+    var resp = match[1];
+    bot.sendMessage(fromId, resp);
 });
 
-console.log('tt');
+// Простая команда без параметров.
+bot.on('message', function (msg) {
+    var chatId = msg.chat.id;
+    // Фотография может быть: путь к файлу, поток(stream) или параметр file_id
+    var photo = 'cats.png';
+    bot.sendPhoto(chatId, photo, {caption: 'Милые котята'});
+});
 
 var http = require('http'),
     port = process.env.PORT || 8001;
