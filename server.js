@@ -101,14 +101,10 @@ http.createServer(function (req, res) {
 							'<td>'+results[i]['time']+'</td>'+
 							'<td>'+results[i]['text']+'</td>'+
 							'<td>'+
-							   '<table>'+
-								'<tr>'+
-									'<td class="borderless">'+results[i]['user']['id']+'</td>'+
-									'<td class="borderless">'+results[i]['user']['first_name']+'</td>'+
-									'<td class="borderless">'+results[i]['user']['last_name']+'</td>'+
-									'<td class="borderless">'+results[i]['user']['user_name']+'</td>'+
-								'</tr>'+
-							   '</table>'+
+								results[i]['user']['id']+'<br>'+
+								results[i]['user']['first_name']+'<br>'+
+								results[i]['user']['last_name']+'<br>'+
+								results[i]['user']['user_name']+
 							'</td>'+
 							'<td>'+results[i]['type']+'</td>'+							
 						  '</tr>');
