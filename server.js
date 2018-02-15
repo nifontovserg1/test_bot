@@ -68,8 +68,8 @@ http.createServer(function (req, res) {
 
 	var collection = db.db('heroku_2l11m0jl').collection('messages');
 	collection.find().toArray(function(err, results) {
-
-		res.write(results.length);
+		
+		res.write(results.length+'');
 	});
 	db.close();
   });
