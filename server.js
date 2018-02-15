@@ -8,7 +8,8 @@ var url = 'mongodb://admin:admin@ds235778.mlab.com:35778/heroku_2l11m0jl';
 var connect = require('connect'),
   mongo = require('mongodb');
 
-
+mongo.connect(url, {}, function(error, db){
+});
 
 bot.on('message', function(msg) {
   const chatId = msg.chat.id;
