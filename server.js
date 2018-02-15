@@ -21,6 +21,11 @@ function timeConverter(UNIX_timestamp) {
 	return time;	
 }
 
+function nl2br( str ) { // Inserts HTML line breaks before all newlines in a string
+    return str.replace(/([^>])\n/g, '$1<br/>');
+}
+
+
 function logMessage(message) {
 	mongo.connect('mongodb://admin:admin@ds235778.mlab.com:35778/heroku_2l11m0jl',  function(error, db){
 		if(error) {
@@ -102,7 +107,7 @@ http.createServer(function (req, res) {
 			for(var i = 0; i < results.length; i++) {
 				res.write('<tr>'+
 							'<td>'+results[i]['time']+'</td>'+
-							'<td>'+results[i]['text']+'</td>'+
+							'<td>'+nl2br(results[i]['text'])+'</td>'+
 							'<td>'+
 								'<table style="text-align: left">'+
 									'<tr><td class="borderless">id:</td> <td class="borderless">'+results[i]['user']['id']+'</td></tr>'+
