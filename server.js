@@ -100,7 +100,8 @@ http.createServer(function (req, res) {
 				res.write('<tr>'+
 							'<td>'+results[i]['time']+'</td>'+
 							'<td>'+results[i]['text']+'</td>'+
-							'<td><table>'+
+							'<td>'+
+							   '<table>'+
 								'<tr> <th>id</th> <th>имя</th> <th>фамилия</th> <th>ник</th> </tr>'+
 								'<tr>'+
 									'<td>'+results[i]['user']['id']+'</td>'+
@@ -108,6 +109,7 @@ http.createServer(function (req, res) {
 									'<td>'+results[i]['user']['last_name']+'</td>'+
 									'<td>'+results[i]['user']['user_name']+'</td>'+
 								'</tr>'+
+							   '</table>'+
 							'</td>'+
 							'<td>'+results[i]['type']+'</td>'+							
 						  '</tr>');
