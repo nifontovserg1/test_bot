@@ -6,7 +6,9 @@ var MongoClient = require("mongodb").MongoClient;
 var url = 'mongodb://admin:admin@ds235778.mlab.com:35778/heroku_2l11m0jl';
 
 
+  MongoClient.connect(url, function(db, err) {
 
+  })  
 
 bot.on('message', function(msg) {
   const chatId = msg.chat.id;
@@ -20,7 +22,7 @@ var http = require('http'),
 http.createServer(function (req, res) {
   res.writeHead(200, {'Content-Type': 'text/plain'});
   
-     
+  
   
   res.end("I'm a telegram bot \n");
 }).listen(parseInt(port));
