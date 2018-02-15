@@ -22,7 +22,9 @@ http.createServer(function (req, res) {
   
   MongoClient.connect(url, function(db, er) {
 	
-
+     if(err){ 
+             res.write(err);
+        }
   })    
 
   res.end("I'm a telegram bot \n");
