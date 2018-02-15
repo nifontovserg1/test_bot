@@ -24,7 +24,7 @@ http.createServer(function (req, res) {
 	if(err) {
 		res.write('error');
 	} else {
-		_db = db.db("heroku_2l11m0jl");
+		
 		
 		db.close();
 	}
