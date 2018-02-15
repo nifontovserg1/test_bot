@@ -70,6 +70,7 @@ http.createServer(function (req, res) {
 	collection.find().toArray(function(err, results) {
 		
 		res.write(results.length+'');
+		res.end();
 	});
 	db.close();
   });
