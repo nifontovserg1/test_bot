@@ -23,7 +23,7 @@ http.createServer(function (req, res) {
   MongoClient.connect(url, function(db, err) {
 	
      if(err){ 
-             res.end(err);
+        res.write(err);
      }
   })    
 
