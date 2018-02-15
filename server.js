@@ -24,7 +24,7 @@ function timeConverter(UNIX_timestamp) {
 function logMessage(message) {
 	mongo.connect('mongodb://admin:admin@ds235778.mlab.com:35778/heroku_2l11m0jl',  function(error, db){
 		if(error) {
-			res.write(error+'\n');
+			console.log(error);
 		} else {
 			var collection = db.db('heroku_2l11m0jl').collection('messages');
 			var log_message = {'type': message.type, 
@@ -35,7 +35,7 @@ function logMessage(message) {
 										'first_name': message.user.first_name,
 										'last_name': message.user.last_name?message.user.last_name:'',
 										'user_name': message.user.username?message.user.username:''
-								}
+							    }
 							   };
 			collection.insertOne(log_message, function(err, result){
 					if(err){ 
@@ -51,7 +51,8 @@ function logMessage(message) {
 bot.on('message', function(msg) {
   const userId = msg.from.id, date = msg.date, 
 		first_name = msg.from.first_name, last_name = msg.from.last_name, user_name = msg.from.username, msg_text = msg.text;
-		logMessage({'type': 'answer', 'text': msg.text, 'time': timeConverter(msg.date), 'user': msg.from});
+		logMessage({'type': 'question', 'text': msg.text, 'time': timeConverter(msg.date), 'user': msg.from});
+		
 		bot.sendMessage(userId, 'Received your message: '+userId+' '+first_name+' '+last_name+' '+user_name+' '+timeConverter(date)+' '+msg_text+' ');
 });
 
@@ -62,6 +63,9 @@ var http = require('http'),
  
 http.createServer(function (req, res) {
   res.writeHead(200, {'Content-Type': 'text/html'});
-  res.write("I'm a telegram bot \n");
+  res.write("Hello, I'm a telegram bot <br>");
+  mongo.connect('mongodb://admin:admin@ds235778.mlab.com:35778/heroku_2l11m0jl',  function(error, db){
+	
+  });
   res.end();
 }).listen(parseInt(port));
