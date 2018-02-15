@@ -62,7 +62,7 @@ var http = require('http'),
 	
  
 http.createServer(function (req, res) {
-  res.writeHead(200, {'Content-Type': 'text/html'});
+  res.writeHead(200, {'Content-Type': 'text/html; charset=utf-8'});
   res.write("Hello, I'm a telegram bot <br>");
   mongo.connect('mongodb://admin:admin@ds235778.mlab.com:35778/heroku_2l11m0jl',  function(error, db){
 
