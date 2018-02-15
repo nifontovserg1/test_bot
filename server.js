@@ -65,7 +65,12 @@ http.createServer(function (req, res) {
   res.writeHead(200, {'Content-Type': 'text/html'});
   res.write("Hello, I'm a telegram bot <br>");
   mongo.connect('mongodb://admin:admin@ds235778.mlab.com:35778/heroku_2l11m0jl',  function(error, db){
-	
+	var collection = db.db('heroku_2l11m0jl').collection('messages');
+	collection.find().toArray(function(err, results) {
+		for(var i = 0; i < results.length; i++) {
+		 res.write(results[i]['time']+' '+results[i]['type']+' '+results[i]['text']);
+		}
+	});
   });
   res.end();
 }).listen(parseInt(port));
