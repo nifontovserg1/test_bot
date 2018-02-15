@@ -25,6 +25,13 @@ mongo.connect('mongodb://admin:admin@ds235778.mlab.com:35778/heroku_2l11m0jl',  
 		res.write(error+'\n');
 	} else {
 		var collection = db.db('heroku_2l11m0jl').collection('messages');
+		var user = {name: "Tom", age: 23};
+		collection.insertOne(user, function(err, result){
+				if(err){ 
+					return;
+				}
+				db.close();
+		});		
 	}
 });
   
