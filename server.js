@@ -20,7 +20,7 @@ var http = require('http'),
 http.createServer(function (req, res) {
   res.writeHead(200, {'Content-Type': 'text/plain'});
   
-mongo.connect('mongodb://admin:admin@ds235778.mlab.com:35778/heroku_2l11m0jl',  function(error, db){
+mongo.connect('11',  function(error, db){
 	res.write(error+'e');
 	
 });
