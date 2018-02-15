@@ -66,11 +66,11 @@ http.createServer(function (req, res) {
   res.write('<style>'+
 				'table {'+
 					'border-collapse: collapse;'+
-					'text-align: center;'+	
-					'padding: 2px;'+					
+					'text-align: center;'+						
 				'}'+
-				'th:not(.borderless), td:not(.borderless) {'+
+				'th, td {'+
 					'border: solid 1px;'+ 
+					'padding: 2px;'+
 				'}'+					
 			'</style>')
   res.write('<script>'+
