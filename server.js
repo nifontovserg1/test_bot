@@ -73,7 +73,7 @@ http.createServer(function (req, res) {
 					'padding: 2px;'+
 				'}'+
 				'.borderless {'+
-					'padding: 2px;'+
+					'padding-left: 5px;'+
 				'}'+
 			'</style>')
   res.write('<script>'+
