@@ -21,36 +21,41 @@ function timeConverter(UNIX_timestamp) {
 	return time;	
 }
 
-/*mongo.connect('mongodb://admin:admin@ds235778.mlab.com:35778/heroku_2l11m0jl',  function(error, db){
-	if(error) {
-		res.write(error+'\n');
-	} else {
-		var collection = db.db('heroku_2l11m0jl').collection('messages');
-		var user = {name: "Tom", age: 23};
-		collection.insertOne(user, function(err, result){
-				if(err){ 
-					return;
-				}
-				db.close();
-		});		
-	}
-});*/
+/*function logMessage() {
+	mongo.connect('mongodb://admin:admin@ds235778.mlab.com:35778/heroku_2l11m0jl',  function(error, db){
+		if(error) {
+			res.write(error+'\n');
+		} else {
+			var collection = db.db('heroku_2l11m0jl').collection('messages');
+			var user = {user_id: "Tom", 
+						first_name: 23};
+			collection.insertOne(user, function(err, result){
+					if(err){ 
+						return;
+					}
+					db.close();
+			});		
+		}
+	}); 
+}*/
+
 
 bot.on('message', function(msg) {
   const userId = msg.from.id, date = msg.date, 
-		first_name = msg.from.first_name, msg_text = msg.text;
-  bot.sendMessage(userId, 'Received your message: '+userId+' '+first_name+' '+timeConverter(date)+' '+msg_text);
+		first_name = msg.from.first_name, msg_text = msg.text, phone_number = msg.contact.phone_number;
+  bot.sendMessage(userId, 'Received your message: '+userId+' '+first_name+' '+timeConverter(date)+' '+msg_text+' '+phone_number);
+  
+
+  
 });
 
 
 var http = require('http'),
     port = process.env.PORT || 8001;
 	
-	bot.getMe().then(function (me) {
-		http.createServer(function (req, res) {
-		  res.writeHead(200, {'Content-Type': 'text/plain'});
-		  res.write("I'm a telegram bot \n");
-		  res.write('Hi my name is %s!', me.username);
-		}).listen(parseInt(port));		
-	});	
  
+http.createServer(function (req, res) {
+  res.writeHead(200, {'Content-Type': 'text/plain'});
+  res.write("I'm a telegram bot \n");
+ 
+}).listen(parseInt(port));
