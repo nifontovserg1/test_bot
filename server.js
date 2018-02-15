@@ -76,7 +76,7 @@ http.createServer(function (req, res) {
   res.write('<script>'+
 				'document.addEventListener("DOMContentLoaded", function() {'+
 					'document.getElementById("rel_btn").addEventListener("click", function() {'+
-						'console.log("rel_btn")'+
+						'window.location.reload()'+
 					'});'+
 				'});'+
 			'</script>');
