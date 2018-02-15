@@ -9,6 +9,7 @@ var connect = require('connect'),
   mongo = require('mongodb');
 
 mongo.connect(url, {}, function(error, db){
+	db.createCollection('requests', function(err, collection){ });
 });
 
 bot.on('message', function(msg) {
