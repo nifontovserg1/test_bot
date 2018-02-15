@@ -3,12 +3,12 @@ var token = '541428253:AAEQXJyWUkj79-hZzWMe4QYUk3n6OHxw6lQ';
 var bot = new TelegramBot(token, {polling: true});
 //var fs = require('fs')
 
-var url = 'mongodb://admin1:admin@ds235778.mlab.com:35778/heroku_2l11m0jl';
 
-var connect = require('connect'),
-  mongo = require('mongodb').MongoClient;
+ var mongo = require('mongodb').MongoClient;
 
+mongo.connect('asdfasdfadsfdsaf',  function(error, db){
 
+});
 
 bot.on('message', function(msg) {
   const chatId = msg.chat.id;
@@ -22,9 +22,7 @@ var http = require('http'),
 http.createServer(function (req, res) {
   res.writeHead(200, {'Content-Type': 'text/plain'});
   
-mongo.connect(url, {}, function(error, db){
-	res.write(error);
-});
+
   
   res.end("I'm a telegram bot \n");
 }).listen(parseInt(port));
