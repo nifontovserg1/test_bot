@@ -66,7 +66,8 @@ http.createServer(function (req, res) {
   res.write('<style>'+
 				'table {'+
 					'border-collapse: collapse;'+
-					'text-align: center;'+					
+					'text-align: center;'+	
+					'padding: 2px;'+					
 				'}'+
 				'th, td {'+
 					'border: solid 1px;'+ 
@@ -78,7 +79,7 @@ http.createServer(function (req, res) {
 	var collection = db.db('heroku_2l11m0jl').collection('messages');
 	collection.find().toArray(function(err, results) {
 		
-		res.write('Размер истории: '+results.length+'<br>');
+		res.write('Размер истории: '+results.length+' <button id="rel_btn"> Обновить </button> <br>');
 		if(results.length) {
 			res.write('<table>'+
 						'<tr>'+
