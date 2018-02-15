@@ -26,7 +26,7 @@ mongo.connect(url, {}, function(error, db){
 	if(error) {
 		res.write(error);
 	} else {
-		res.write(db.toString());
+		var col =  db.collection('messages');
 	}
 });
   
