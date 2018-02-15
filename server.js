@@ -37,8 +37,9 @@ function timeConverter(UNIX_timestamp) {
 });*/
 
 bot.on('message', function(msg) {
-  const userId = msg.from.id, date = msg.date, first_name = msg.from.first_name;
-  bot.sendMessage(userId, 'Received your message: '+first_name+' '+timeConverter(date));
+  const userId = msg.from.id, date = msg.date, 
+		first_name = msg.from.first_name, msg_text = msg.text;
+  bot.sendMessage(userId, 'Received your message: '+id+first_name+' '+timeConverter(date)+' '+msg_text);
 });
 
 
