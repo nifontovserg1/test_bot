@@ -4,7 +4,7 @@ var bot = new TelegramBot(token, {polling: true});
 //var fs = require('fs')
 
 
- var mongo = require('mongodb').MongoClient;
+var mongo = require('mongodb').MongoClient;
 
 function timeConverter(UNIX_timestamp) {
 	var a = new Date(UNIX_timestamp * 1000);
@@ -23,6 +23,19 @@ function timeConverter(UNIX_timestamp) {
 
 function nl2br( str ) { // Inserts HTML line breaks before all newlines in a string
     return str.replace(/([^>])\n/g, '$1<br/>');
+}
+
+function trasnf_type(type) {
+	switch(type) {
+		case 'question':
+			return 'вопрос';
+			break;
+		case 'answer':
+			return 'ответ';
+			break;
+		default:
+			return '';
+	}
 }
 
 
@@ -93,7 +106,6 @@ http.createServer(function (req, res) {
 
 	var collection = db.db('heroku_2l11m0jl').collection('messages');
 	collection.find().toArray(function(err, results) {
-		
 		res.write('<div style="margin-bottom: 10px"> Размер истории: '+results.length+' <button id="rel_btn"> Обновить </button> </div>');
 		if(results.length) {
 			res.write('<table>'+
