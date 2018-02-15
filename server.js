@@ -68,18 +68,7 @@ http.createServer(function (req, res) {
 	var collection = db.db('heroku_2l11m0jl').collection('messages');
 	collection.find().toArray(function(err, results) {
 		res.write('dd');
-		if(results.length > 0) {
-			res.write('<table border="1">');
-			res.write('<tr>'+
-						'<th>Время</th>'+
-						'<th>Тип</th>'+
-						'<th>Текст</th>'+
-					  '</tr>');
-			for(var i = 0; i < results.length; i++) {
-			 res.write('<tr><td>'+results[i]['time']+'</td><td>'+results[i]['type']+'</td> <td>'+results[i]['text']+'</td></tr>');
-			}
-			res.write('</table>');
-		}
+
 	});
   });
   res.end();
