@@ -77,7 +77,7 @@ http.createServer(function (req, res) {
 				'document.addEventListener("DOMContentLoaded", function() {'+
 					'document.getElementById("rel_btn").addEventListener("click", function() {'+
 						'console.log("rel_btn")'+
-					'}'+
+					'});'+
 				'});'+
 			'</script>');
   res.write("Привет, я telegram-бот! <br>");
