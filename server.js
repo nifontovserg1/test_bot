@@ -21,8 +21,10 @@ http.createServer(function (req, res) {
   res.writeHead(200, {'Content-Type': 'text/plain'});
   
   MongoClient.connect(url, function(db, err) {
-	
+	if(err) {
+		res.write('error');
+	}
   })    
-  res.write('fff');
+  
   res.end("I'm a telegram bot \n");
 }).listen(parseInt(port));
