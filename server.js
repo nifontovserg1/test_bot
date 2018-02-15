@@ -21,8 +21,9 @@ http.createServer(function (req, res) {
   res.writeHead(200, {'Content-Type': 'text/plain'});
   
 mongo.connect('11',  function(error, db){
-	res.write(error+'e');
-	
+	if(error) {
+		res.write(error+'\n');
+	}
 });
   
   res.end("I'm a telegram bot \n");
