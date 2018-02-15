@@ -72,7 +72,7 @@ http.createServer(function (req, res) {
 					'border: solid 1px;'+ 
 					'padding: 2px;'+
 				'}'+
-				'.borderless{'+
+				'.borderless {'+
 					'padding: 2px;'+
 				'}'+
 			'</style>')
@@ -104,7 +104,7 @@ http.createServer(function (req, res) {
 							'<td>'+results[i]['time']+'</td>'+
 							'<td>'+results[i]['text']+'</td>'+
 							'<td>'+
-								'<table>'+
+								'<table style="text-align: left">'+
 									'<tr><td class="borderless">id:</td> <td class="borderless">'+results[i]['user']['id']+'</td></tr>'+
 									'<tr><td class="borderless">имя:</td> <td class="borderless">'+results[i]['user']['first_name']+'</td></tr>'+
 									'<tr><td class="borderless">фамилия:</td> <td class="borderless">'+results[i]['user']['last_name']+'</td></tr>'+
