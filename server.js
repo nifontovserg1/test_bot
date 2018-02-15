@@ -78,7 +78,7 @@ http.createServer(function (req, res) {
 							'<th>Пользователь</th>'+
 							'<th>Тип</th>'+
 						'</tr>');
-			res.write(results.length+'');
+
 			for(var i = 0; i < results.length; i++) {
 				res.write('<tr> <td>'+results[i]['time']+'</td> <td>'+results[i]['text']+'</td> <td></td> <td>'+results[i]['type']+'</td> </tr>');
 			}
