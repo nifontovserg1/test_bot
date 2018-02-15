@@ -5,7 +5,7 @@ var bot = new TelegramBot(token, {polling: true});
 var MongoClient = require("mongodb").MongoClient;
 var url = 'mongodb://admin:admin@ds235778.mlab.com:35778/heroku_2l11m0jl';
   MongoClient.connect(url, function(db, er) {
-	var collection = db.collection("messages");
+	
 
   })  
 
