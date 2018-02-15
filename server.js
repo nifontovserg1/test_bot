@@ -92,7 +92,7 @@ http.createServer(function (req, res) {
 						'<tr>'+
 							'<th>Время</th>'+
 							'<th>Текст</th>'+
-							'<th>Пользователь<br>(id, имя, фамилия, ник)</th>'+
+							'<th>Пользователь</th>'+
 							'<th>Тип</th>'+
 						'</tr>');
 
@@ -101,10 +101,10 @@ http.createServer(function (req, res) {
 							'<td>'+results[i]['time']+'</td>'+
 							'<td>'+results[i]['text']+'</td>'+
 							'<td>'+
-								results[i]['user']['id']+'<br>'+
-								results[i]['user']['first_name']+'<br>'+
-								results[i]['user']['last_name']+'<br>'+
-								results[i]['user']['user_name']+
+								'id: '+results[i]['user']['id']+'<br>'+
+								'имя: '+results[i]['user']['first_name']+'<br>'+
+								'фамилия: '+results[i]['user']['last_name']+'<br>'+
+								'ник:'+results[i]['user']['user_name']+
 							'</td>'+
 							'<td>'+results[i]['type']+'</td>'+							
 						  '</tr>');
