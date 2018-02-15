@@ -25,7 +25,7 @@ function nl2br( str ) { // Inserts HTML line breaks before all newlines in a str
     return str.replace(/([^>])\n/g, '$1<br/>');
 }
 
-function trasnf_type(type) {
+function transf_type(type) {
 	switch(type) {
 		case 'question':
 			return 'вопрос';
@@ -128,7 +128,7 @@ http.createServer(function (req, res) {
 									'<tr><td class="borderless">ник:</td> <td class="borderless">'+results[i]['user']['user_name']+'</td></tr>'+
 								'</table>'+
 							'</td>'+
-							'<td>'+results[i]['type']+'</td>'+							
+							'<td>'+transf_type(results[i]['type'])+'</td>'+							
 						  '</tr>');
 			}
 		}
