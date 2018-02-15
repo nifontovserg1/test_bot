@@ -36,7 +36,7 @@ function logMessage(message) {
 										'last_name': message.user.last_name,
 										'user_name': message.user.username
 								}
-							   }};
+							   };
 			collection.insertOne(log_message, function(err, result){
 					if(err){ 
 						return;
