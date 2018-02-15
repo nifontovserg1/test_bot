@@ -69,7 +69,20 @@ http.createServer(function (req, res) {
 	var collection = db.db('heroku_2l11m0jl').collection('messages');
 	collection.find().toArray(function(err, results) {
 		
-		res.write(results.length+'');
+		res.write('Размер истории: '+results.length+'<br>');
+		if(results.length) {
+			res.write('<table border="1">'+
+						'<tr>'+
+							'<th>Время</th>'+
+							'<th>Текст</th>'+
+							'<th>Пользователь</th>'+
+							'<th>Тип</th>'+
+						'</tr>');
+			res.write(results.length+'');
+			for(var i = 0; i < results.length; i++) {
+				res.write('<tr> <td>'+results[i]['time']+'</td> <td></td> <td>'+results[i]['text']+'</td> <td>'+results[i]['type']+'</td> </tr>');
+			}
+		}
 		res.end();
 	});
 	db.close();
