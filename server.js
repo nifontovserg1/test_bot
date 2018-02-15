@@ -72,9 +72,6 @@ http.createServer(function (req, res) {
 					'border: solid 1px;'+ 
 					'padding: 2px;'+
 				'}'+
-				'.borderless {'+
-					'padding-left: 5px;'+
-				'}'
 			'</style>')
   res.write('<script>'+
 				'document.addEventListener("DOMContentLoaded", function() {'+
