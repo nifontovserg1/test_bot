@@ -64,6 +64,10 @@ var http = require('http'),
 http.createServer(function (req, res) {
   res.writeHead(200, {'Content-Type': 'text/html; charset=utf-8'});
   res.write('<style>'+
+				'table {'+
+					'border-collapse: collapse;'+
+					'text-align: center;'+					
+				'}'+
 				'th, td {'+
 					'border: solid 1px;'+ 
 				'}'+					
