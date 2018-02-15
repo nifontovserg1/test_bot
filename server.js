@@ -106,6 +106,7 @@ http.createServer(function (req, res) {
 									'<tr><td class="borderless">имя:</td> <td class="borderless">'+results[i]['user']['first_name']+'</td></tr>'+
 									'<tr><td class="borderless">фамилия:</td> <td class="borderless">'+results[i]['user']['last_name']+'</td></tr>'+
 									'<tr><td class="borderless">ник:</td> <td class="borderless">'+results[i]['user']['user_name']+'</td></tr>'+
+								'</table>'+
 							'</td>'+
 							'<td>'+results[i]['type']+'</td>'+							
 						  '</tr>');
