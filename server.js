@@ -24,9 +24,9 @@ http.createServer(function (req, res) {
 	collection.insertOne(user, function(err, result){
 		 
 		if(err){ 
-			response.write(err);
+			res.write(err);
 		}
-		response.write(result.ops);
+		res.write(result.ops);
 		db.close();
 	});
   })  
