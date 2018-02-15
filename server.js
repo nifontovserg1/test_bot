@@ -80,7 +80,7 @@ http.createServer(function (req, res) {
 						'</tr>');
 			res.write(results.length+'');
 			for(var i = 0; i < results.length; i++) {
-				res.write('<tr> <td>'+results[i]['time']+'</td> <td></td> <td>'+results[i]['text']+'</td> <td>'+results[i]['type']+'</td> </tr>');
+				res.write('<tr> <td>'+results[i]['time']+'</td> <td>'+results[i]['text']+'</td> <td></td> <td>'+results[i]['type']+'</td> </tr>');
 			}
 		}
 		res.end();
