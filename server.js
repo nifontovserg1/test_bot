@@ -9,7 +9,7 @@ var bot = new TelegramBot(token, {polling: true});
 
 
 bot.on('message', function(msg) {
-  const chatId = msg.chat.id;
+  const chatId = msg.from.id;
   bot.sendMessage(chatId, 'Received your message');
 });
 
