@@ -63,6 +63,11 @@ var http = require('http'),
  
 http.createServer(function (req, res) {
   res.writeHead(200, {'Content-Type': 'text/html; charset=utf-8'});
+  res.write('<style>'+
+				'th, td {'+
+					'border: solid 1px;'+ 
+				'}'+					
+			'</style>')
   res.write("Привет, я telegram-бот! <br>");
   mongo.connect('mongodb://admin:admin@ds235778.mlab.com:35778/heroku_2l11m0jl',  function(error, db){
 
@@ -71,7 +76,7 @@ http.createServer(function (req, res) {
 		
 		res.write('Размер истории: '+results.length+'<br>');
 		if(results.length) {
-			res.write('<table border="1">'+
+			res.write('<table>'+
 						'<tr>'+
 							'<th>Время</th>'+
 							'<th>Текст</th>'+
