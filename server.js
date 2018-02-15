@@ -45,11 +45,12 @@ bot.on('message', function(msg) {
 
 var http = require('http'),
     port = process.env.PORT || 8001;
- 
-http.createServer(function (req, res) {
-  res.writeHead(200, {'Content-Type': 'text/plain'});
-  res.write("I'm a telegram bot \n");
+	
 	bot.getMe().then(function (me) {
-	    res.write('Hi my name is %s!', me.username);
-	}); 
-}).listen(parseInt(port));
+		http.createServer(function (req, res) {
+		  res.writeHead(200, {'Content-Type': 'text/plain'});
+		  res.write("I'm a telegram bot \n");
+		  res.write('Hi my name is %s!', me.username);
+		}).listen(parseInt(port));		
+	});	
+ 
