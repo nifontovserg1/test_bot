@@ -24,7 +24,11 @@ http.createServer(function (req, res) {
 	if(err) {
 		res.write('error');
 	} else {
-		db.collection('messages');
+		db.createCollection("customers", function(err, res) {
+			if (err) throw err;
+			console.log("Collection created!");
+			db.close();
+		});
 		db.close();
 	}
   })    
