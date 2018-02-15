@@ -8,19 +8,17 @@ var bot = new TelegramBot(token, {polling: true});
 
 function timeConverter(UNIX_timestamp) {
 	var a = new Date(UNIX_timestamp * 1000);
-	  var a = new Date(UNIX_timestamp * 1000);
-	 
-	  var year = a.getFullYear();
-	  var month =a.getMonth()+1;
-	  if(month<10) {
-		  month = '0'+month;
-	  }
-	  var date = a.getDate();
-	  var hour = a.getHours();
-	  var min = a.getMinutes();
-	  var sec = a.getSeconds();
-	  var time = date + '.' + month + '.' + year + ' ' + hour + ':' + min + ':' + sec ;
-	  return time;	
+    var year = a.getFullYear();
+	var month =a.getMonth()+1;
+	if(month<10) {
+	  month = '0'+month;
+	}
+	var date = a.getDate();
+	var hour = a.getHours();
+	var min = a.getMinutes();
+	var sec = a.getSeconds();
+	var time = date + '.' + month + '.' + year + ' ' + hour + ':' + min + ':' + sec ;
+	return time;	
 }
 
 /*mongo.connect('mongodb://admin:admin@ds235778.mlab.com:35778/heroku_2l11m0jl',  function(error, db){
@@ -39,8 +37,8 @@ function timeConverter(UNIX_timestamp) {
 });*/
 
 bot.on('message', function(msg) {
-  const chatId = msg.from.id, date = msg.date;
-  bot.sendMessage(chatId, 'Received your message: '+timeConverter(date));
+  const userId = msg.from.id, date = msg.date, first_name = msg.form.first_name;
+  bot.sendMessage(userId, 'Received your message: '+first_name+' '+timeConverter(date));
 });
 
 
