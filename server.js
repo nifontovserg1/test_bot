@@ -68,7 +68,7 @@ http.createServer(function (req, res) {
 					'border-collapse: collapse;'+
 					'text-align: center;'+						
 				'}'+
-				'th, td {'+
+				'th:not(.borderless), td:not(.borderless) {'+
 					'border: solid 1px;'+ 
 					'padding: 2px;'+
 				'}'+					
@@ -101,10 +101,11 @@ http.createServer(function (req, res) {
 							'<td>'+results[i]['time']+'</td>'+
 							'<td>'+results[i]['text']+'</td>'+
 							'<td>'+
-								'id: '+results[i]['user']['id']+'<br>'+
-								'имя: '+results[i]['user']['first_name']+'<br>'+
-								'фамилия: '+results[i]['user']['last_name']+'<br>'+
-								'ник:'+results[i]['user']['user_name']+
+								'<table>'+
+									'<tr><td class="borderless">id:</td> <td class="borderless">'+results[i]['user']['id']+'</td></tr>'+
+									'<tr><td class="borderless">имя:</td> <td class="borderless">'+results[i]['user']['first_name']+'</td></tr>'+
+									'<tr><td class="borderless">фамилия:</td> <td class="borderless">'+results[i]['user']['last_name']+'</td></tr>'+
+									'<tr><td class="borderless">ник:</td> <td class="borderless">'+results[i]['user']['user_name']+'</td></tr>'+
 							'</td>'+
 							'<td>'+results[i]['type']+'</td>'+							
 						  '</tr>');
