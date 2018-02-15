@@ -69,7 +69,7 @@ http.createServer(function (req, res) {
 					'text-align: center;'+	
 					'padding: 2px;'+					
 				'}'+
-				'th, td:not(.borderless) {'+
+				'th:not(.borderless), td:not(.borderless) {'+
 					'border: solid 1px;'+ 
 				'}'+					
 			'</style>')
