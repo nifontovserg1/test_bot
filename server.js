@@ -3,7 +3,7 @@ var token = '541428253:AAEQXJyWUkj79-hZzWMe4QYUk3n6OHxw6lQ';
 var bot = new TelegramBot(token, {polling: true});
 //var fs = require('fs')
 var MongoClient = require("mongodb").MongoClient;
-var url = 'mongodb://admin:admin@ds235778.mlab.com:35778/heroku_2l11m0jl';
+var url = 'mongodb://admin:admin@ds235778.mlab.com:35778';
 
 
 
@@ -24,11 +24,7 @@ http.createServer(function (req, res) {
 	if(err) {
 		res.write('error');
 	} else {
-		db.createCollection("customers", function(err, res) {
-			if (err) throw err;
-			console.log("Collection created!");
-
-		});
+		_db = db.db("heroku_2l11m0jl");
 		db.close();
 	}
   })    
