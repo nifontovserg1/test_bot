@@ -21,14 +21,21 @@ function timeConverter(UNIX_timestamp) {
 	return time;	
 }
 
-/*function logMessage() {
+/*function logMessage(message) {
+	
 	mongo.connect('mongodb://admin:admin@ds235778.mlab.com:35778/heroku_2l11m0jl',  function(error, db){
 		if(error) {
 			res.write(error+'\n');
 		} else {
 			var collection = db.db('heroku_2l11m0jl').collection('messages');
-			var user = {user_id: "Tom", 
-						first_name: 23};
+			var log_message = {'type': message.type, 
+							   'text': message.text,
+							   'time': message.time,
+							   'user': {
+										'id': message.user.id 
+										'':
+										'':
+							   }};
 			collection.insertOne(user, function(err, result){
 					if(err){ 
 						return;
@@ -42,8 +49,9 @@ function timeConverter(UNIX_timestamp) {
 
 bot.on('message', function(msg) {
   const userId = msg.from.id, date = msg.date, 
-		first_name = msg.from.first_name, msg_text = msg.text, contact = msg.contact.phone_number;
-  bot.sendMessage(userId, 'Received your message: '+userId+' '+first_name+' '+timeConverter(date)+' '+msg_text+' ');
+		first_name = msg.from.first_name, last_name = msg.from.last_name, user_name = msg.from.username, msg_text = msg.text;
+  
+  bot.sendMessage(userId, 'Received your message: '+userId+' '+first_name+' '+last_name+' '+user_name+' '+timeConverter(date)+' '+msg_text+' ');
   
 
   
