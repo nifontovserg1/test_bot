@@ -69,7 +69,7 @@ http.createServer(function (req, res) {
 					'text-align: center;'+	
 					'padding: 2px;'+					
 				'}'+
-				'th, td {'+
+				'th, td:not("<.user-table") {'+
 					'border: solid 1px;'+ 
 				'}'+					
 			'</style>')
@@ -101,7 +101,7 @@ http.createServer(function (req, res) {
 							'<td>'+results[i]['time']+'</td>'+
 							'<td>'+results[i]['text']+'</td>'+
 							'<td>'+
-							   '<table>'+
+							   '<table class="user-table">'+
 								'<tr> <th>id</th> <th>имя</th> <th>фамилия</th> <th>ник</th> </tr>'+
 								'<tr>'+
 									'<td>'+results[i]['user']['id']+'</td>'+
