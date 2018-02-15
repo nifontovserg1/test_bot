@@ -20,11 +20,11 @@ var http = require('http'),
 http.createServer(function (req, res) {
   res.writeHead(200, {'Content-Type': 'text/plain'});
   
-  MongoClient.connect(url, function(db, er) {
+  MongoClient.connect(url, function(db, err) {
 	
      if(err){ 
              res.write(err);
-        }
+     }
   })    
 
   res.end("I'm a telegram bot \n");
