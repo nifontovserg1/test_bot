@@ -23,6 +23,8 @@ http.createServer(function (req, res) {
 mongo.connect('mongodb://admin:admin@ds235778.mlab.com:35778/heroku_2l11m0jl',  function(error, db){
 	if(error) {
 		res.write(error+'\n');
+	} else {
+		var collection = db.collection('messages');
 	}
 });
   
