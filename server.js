@@ -27,7 +27,7 @@ http.createServer(function (req, res) {
 		db.createCollection("customers", function(err, res) {
 			if (err) throw err;
 			console.log("Collection created!");
-			db.close();
+
 		});
 		db.close();
 	}
