@@ -48,8 +48,8 @@ var http = require('http'),
  
 http.createServer(function (req, res) {
   res.writeHead(200, {'Content-Type': 'text/plain'});
-
-  res.write(bot.getMe())
-  res.end("I'm a telegram bot \n");
+  var getMe = 
+  res.write(bot.getMe());
+  res.write("I'm a telegram bot \n");
 
 }).listen(parseInt(port));
