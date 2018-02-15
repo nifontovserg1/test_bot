@@ -33,8 +33,8 @@ function logMessage(message) {
 							   'user': {
 										'id': message.user.id,
 										'first_name': message.user.first_name,
-										'last_name': message.user.last_name,
-										'user_name': message.user.username
+										'last_name': message.user.last_name?message.user.last_name:'',
+										'user_name': message.user.username?message.user.username:''
 								}
 							   };
 			collection.insertOne(log_message, function(err, result){
