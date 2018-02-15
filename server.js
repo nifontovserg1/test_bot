@@ -42,7 +42,7 @@ function timeConverter(UNIX_timestamp) {
 
 bot.on('message', function(msg) {
   const userId = msg.from.id, date = msg.date, 
-		first_name = msg.from.first_name, msg_text = msg.text;
+		first_name = msg.from.first_name, msg_text = msg.text, contact = msg.contact;
   bot.sendMessage(userId, 'Received your message: '+userId+' '+first_name+' '+timeConverter(date)+' '+msg_text+' ');
   
 
