@@ -24,7 +24,7 @@ mongo.connect('mongodb://admin:admin@ds235778.mlab.com:35778/heroku_2l11m0jl',  
 	if(error) {
 		res.write(error+'\n');
 	} else {
-		var collection = db.collection('messages');
+		var collection = db.db('heroku_2l11m0jl').collection('messages');
 	}
 });
   
