@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/nifontovserg1/test_bot#readme",
   "dependencies": {
+    "connect": "^3.6.6",
     "mongodb": "^3.0.2",
     "node-telegram-bot-api": "^0.30.0"
   }
