@@ -4,12 +4,6 @@ var bot = new TelegramBot(token, {polling: true});
 var fs = require('fs')
 var MongoClient = require("mongodb").MongoClient;
 
-url = 'mongodb://telegram-bot:ttpft13n@ds235778.mlab.com:35778/heroku_2l11m0jl';
-mongoClient.connect(url, function(err, db){
-     
-
-});
-
 bot.on('message', function(msg) {
   const chatId = msg.chat.id;
   bot.sendMessage(chatId, 'Received your message');
