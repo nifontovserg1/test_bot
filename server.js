@@ -79,7 +79,7 @@ http.createServer(function (req, res) {
 	var collection = db.db('heroku_2l11m0jl').collection('messages');
 	collection.find().toArray(function(err, results) {
 		
-		res.write('<div style="margin-top: 15px"> Размер истории: '+results.length+' <button id="rel_btn"> Обновить </button> </div>');
+		res.write('<div style="margin-bottom:: 10px"> Размер истории: '+results.length+' <button id="rel_btn"> Обновить </button> </div>');
 		if(results.length) {
 			res.write('<table>'+
 						'<tr>'+
