@@ -6,9 +6,7 @@ var bot = new TelegramBot(token, {polling: true});
 
  var mongo = require('mongodb').MongoClient;
 
-mongo.connect('asdfasdfadsfdsaf',  function(error, db){
 
-});
 
 bot.on('message', function(msg) {
   const chatId = msg.chat.id;
@@ -22,7 +20,9 @@ var http = require('http'),
 http.createServer(function (req, res) {
   res.writeHead(200, {'Content-Type': 'text/plain'});
   
-
+mongo.connect('asdfasdfadsfdsaf',  function(error, db){
+	res.write('e<br>');
+});
   
   res.end("I'm a telegram bot \n");
 }).listen(parseInt(port));
