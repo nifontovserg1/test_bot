@@ -26,6 +26,6 @@ http.createServer(function (req, res) {
         res.write(err);
      }
   })    
-
+  res.write('fff');
   res.end("I'm a telegram bot \n");
 }).listen(parseInt(port));
