@@ -97,7 +97,20 @@ http.createServer(function (req, res) {
 						'</tr>');
 
 			for(var i = 0; i < results.length; i++) {
-				res.write('<tr> <td>'+results[i]['time']+'</td> <td>'+results[i]['text']+'</td> <td></td> <td>'+results[i]['type']+'</td> </tr>');
+				res.write('<tr>'+
+							'<td>'+results[i]['time']+'</td>'+
+							'<td>'+results[i]['text']+'</td>'+
+							'<td><table>'+
+								'<tr> <th>id</th> <th>имя</th> <th>фамилия</th> <th>ник</th> </tr>'+
+								'<tr>'+
+									'<td>'+results[i]['user']['id']+'</td>'+
+									'<td>'+results[i]['user']['first_name']+'</td>'+
+									'<td>'+results[i]['user']['last_name']+'</td>'+
+									'<td>'+results[i]['user']['user_name']+'</td>'+
+								'</tr>'+
+							'</td>'+
+							'<td>'+results[i]['type']+'</td>'+							
+						  '</tr>');
 			}
 		}
 		res.end();
