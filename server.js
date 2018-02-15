@@ -8,9 +8,7 @@ var url = 'mongodb://admin:admin@ds235778.mlab.com:35778/heroku_2l11m0jl';
 var connect = require('connect'),
   mongo = require('mongodb');
 
-mongo.connect(url, {}, function(error, db){
-	db.createCollection('requests', function(err, collection){ });
-});
+
 
 bot.on('message', function(msg) {
   const chatId = msg.chat.id;
@@ -24,7 +22,11 @@ var http = require('http'),
 http.createServer(function (req, res) {
   res.writeHead(200, {'Content-Type': 'text/plain'});
   
-
+mongo.connect(url, {}, function(error, db){
+	if(error) {
+		res.write(error);
+	}
+});
   
   res.end("I'm a telegram bot \n");
 }).listen(parseInt(port));
