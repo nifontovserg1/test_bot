@@ -51,7 +51,7 @@ function logMessage(message) {
 bot.on('message', function(msg) {
   const userId = msg.from.id, date = msg.date, 
 		first_name = msg.from.first_name, last_name = msg.from.last_name, user_name = msg.from.username, msg_text = msg.text;
-		logMessage({'type': 'answer', 'text': msg.text, 'time': timeConverter(msg.date), 'user': msg.from});
+		
 		bot.sendMessage(userId, 'Received your message: '+userId+' '+first_name+' '+last_name+' '+user_name+' '+timeConverter(date)+' '+msg_text+' ');
 });
 
