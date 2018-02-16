@@ -85,7 +85,7 @@ bot.on('message', function(msg) {
 	is_answered = true;
   }
 
-  if(reg_exps['site_build_request'].test(msg.text)) {
+  if(reg_exps['site_build_request'].test(msg.text) && !is_answered) {
 	state = 'site_type_request';
 	answer_text = 'Какой сайт Вы сделать? Выберите один из четырех вариантов ответа.\n'+
 					'\t1. Одностраничный сайт, сайт-визитка;\n'+
@@ -98,12 +98,12 @@ bot.on('message', function(msg) {
   if(is_number(msg.text) && !is_answered) {
 	var answer_number = parseInt(msg.text);
 	if (state ==  'site_type_request') {
-		if(answer_number == 1) {
+		if(answer_number == 1 && !is_answered) {
 			answer_text = 'Вы хорошо знакомы с HTML/CSS/JS и имеются ли у Вас навыки дизайна?';
 			state = 'simplesite_question_level_1';
 			is_answered = true;				
 		}
-		if(answer_number == 2) {
+		if(answer_number == 2 && !is_answered) {
 			answer_text = 'Лэндинги сейчас разрабатываются с использованием конструкторов. \n'+
 						  'Конструкторы лэндигов: \n'+
 						  'http://lpmotor.ru/ \n'+
@@ -119,12 +119,12 @@ bot.on('message', function(msg) {
   }
  
   if(reg_exps['yes'].test(msg.text) && !is_answered) {
-	if (state == 'simplesite_question_level_1') {
+	if (state == 'simplesite_question_level_1' && !is_answered) {
 		answer_text = 'Готовы ли Вы потратить больше одного дня на создание сайта?';
 		state = 'simplesite_question_good_experience_level_1';
 		is_answered = true;
 	}
-	if (state == 'simplesite_question_good_experience_level_1') {
+	if (state == 'simplesite_question_good_experience_level_1' && !is_answered) {
 		answer_text = 'Тогда разрабатывайте сайт самостоятельно без фреймворков, CMS и библиотек.\n'+
 					  'В итоге у Вас получится сайт, сделанный конкретно под Ваши требования и умеющий уникальный дизайн.\n'+
 					  'Удачи!';
@@ -134,7 +134,7 @@ bot.on('message', function(msg) {
  }
   
   if(reg_exps['no'].test(msg.text) && !is_answered) {
-		if (state == 'simplesite_question_good_experience_level_1') {
+		if (state == 'simplesite_question_good_experience_level_1' && !is_answered) {
 			answer_text = 'Тогда Вам следует использовать шаблон или фреймворк.\n'+
 						  'Шаблоны бывают платными и бесплатными. Сайты с платными шаблонами в интернете встречаются реже, чем с бесплатными.\n'+
 						  'Следовательно, выбирая платный шаблон, может увеличиться уникальность дизайна.\n'+
@@ -154,7 +154,7 @@ bot.on('message', function(msg) {
 			is_answered = true;			
 		}
 		
-		if (state == 'simplesite_question_level_1') {
+		if (state == 'simplesite_question_level_1' && !is_answered) {
 			answer_text = 'Тогда Вам следует использовать конструктор сайтов.\n'+
 						  'Для улучшения уникальности дизайна можно обратиться к веб-дизайнеру.\n'+
 						  'Конструкторы сайтов:\n'+
@@ -172,7 +172,7 @@ bot.on('message', function(msg) {
 		}
   } 
   logMessage({'type': 'answer', 'text': answer_text, 'time': timeConverter(msg.date), 'user': msg.from});
-  bot.sendMessage(userId, answer_text+state);
+  bot.sendMessage(userId, answer_text);
 });
 
 
