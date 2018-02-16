@@ -2,13 +2,50 @@ var TelegramBot = require('node-telegram-bot-api');
 var token = '541428253:AAEQXJyWUkj79-hZzWMe4QYUk3n6OHxw6lQ'; 
 var bot = new TelegramBot(token, {polling: true});
 var mongo = require('mongodb').MongoClient;
-var functions = require('./functions');
 
 var reg_exps = {'hi': /^\s*(З|з)дравствуйте\s*(.|!)?$|(П|п)ривет(ствую)?\s*(.|!)?$|(Д|д)обрый\s*(день|вечер)\s*(.|!)?$|(Д|д)оброе утро\s*(.|!)?$|(Д|д)оброго времени суток\s*(.|!)?\s*$/,
 				'site_build_request': /^\s*((((Я|я)\s+)?((Х|х)очу|планирую))|(((М|м)не\s+)?((Н|н)адо|(Х|х)отелось (бы)?|(Т|т)ребуется)))\s+(сделать|создать|разработать|спроектировать)\s+(веб-)?сайт\s*$/,
 				'yes': /^\s*(Д|д)а|(К|к)кончено|(Е|е)стественно\s*$/,
 				'no': /^\s*(Н|н)ет?|(С|с)средне|(Т|т)ак себе|(П|п)лохо|(П|п)оверхностно\s*$/,}
 
+function is_number(value) {
+	return !isNaN(value.toString().trim());
+}
+				
+function formate(value) {
+	return value<10?('0'+value):value;
+}
+
+function timeConverter(UNIX_timestamp) {
+	var a = new Date(UNIX_timestamp * 1000);
+	a.setHours(a.getHours()+3)
+    var year = a.getFullYear();
+	var month = formate(a.getMonth()+1);
+
+	var date = formate(a.getDate());
+	var hour = formate(a.getHours());
+	var min = formate(a.getMinutes());
+	var sec = formate(a.getSeconds());
+	var time = date + '.' + month + '.' + year + ' ' + hour + ':' + min + ':' + sec ;
+	return time;	
+}
+
+function nl2br( str ) { // Inserts HTML line breaks before all newlines in a string
+    return str.replace(/([^>])\n/g, '$1<br/>');
+}
+
+function transf_type(type) {
+	switch(type) {
+		case 'question':
+			return 'вопрос';
+			break;
+		case 'answer':
+			return 'ответ';
+			break;
+		default:
+			return '';
+	}
+}
 
 
 function logMessage(message) {
