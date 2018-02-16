@@ -212,7 +212,7 @@ http.createServer(function (req, res) {
 			res.write('<table>'+
 						'<tr>'+
 							'<th>Время</th>'+
-							'<th style="text-align: left;">Текст</th>'+
+							'<th>Текст</th>'+
 							'<th>Пользователь</th>'+
 							'<th>Тип</th>'+
 						'</tr>');
@@ -220,7 +220,7 @@ http.createServer(function (req, res) {
 			for(var i = 0; i < results.length; i++) {
 				res.write('<tr>'+
 							'<td>'+results[i]['time']+'</td>'+
-							'<td>'+nl2br(results[i]['text'])+'</td>'+
+							'<td style="text-align: left;">'+nl2br(results[i]['text'])+'</td>'+
 							'<td>'+
 								'<table style="text-align: left">'+
 									'<tr><td class="borderless">id:</td> <td class="borderless">'+results[i]['user']['id']+'</td></tr>'+
