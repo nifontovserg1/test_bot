@@ -77,15 +77,15 @@ function logMessage(message) {
 var state = null;
 
 bot.on('message', function(msg) {
-  const userId = msg.from.id;
-  logMessage({'type': 'question', 'text': msg.text, 'time': timeConverter(msg.date), 'user': msg.from});
+  const userId = msg.from.id, text = msg.text;
+  logMessage({'type': 'question', 'text': text, 'time': timeConverter(msg.date), 'user': msg.from});
   var answer_text = 'К сожалению, затрудняюсь ответить', is_answered = false;
-  if(reg_exps['hi'].test(msg.text) && !is_answered) {
+  if(reg_exps['hi'].test(text) && !is_answered) {
 	answer_text = 'Здравствуйте. Чему могу Вам помочь?';
 	is_answered = true;
   }
 
-  if(reg_exps['site_build_request'].test(msg.text)) {
+  if(reg_exps['site_build_request'].test(text)) {
 	state = 'site_type_request';
 	answer_text = 'Какой сайт Вы сделать? Выберите один из четырех вариантов ответа.\n'+
 					'\t1. Одностраничный сайт, сайт-визитка;\n'+
@@ -95,8 +95,8 @@ bot.on('message', function(msg) {
 	is_answered = true;					
   }
   
-  if(is_number(msg.text) && !is_answered) {
-	var answer_number = parseInt(msg.text);
+  if(is_number(text) && !is_answered) {
+	var answer_number = parseInt(text);
 	if (state ==  'site_type_request') {
 		if(answer_number == 1) {
 			answer_text = 'Вы хорошо знакомы с HTML/CSS/JS и имеются ли у Вас навыки дизайна?';
@@ -140,7 +140,7 @@ bot.on('message', function(msg) {
     }
   }
  
-  if(reg_exps['yes'].test(msg.text) && !is_answered) {
+  if(reg_exps['yes'].test(text) && !is_answered) {
 	if (state == 'simplesite_question_level_1') {
 		answer_text = 'Готовы ли Вы потратить больше одного дня на создание сайта?';
 		state = 'simplesite_question_good_experience_level_1';
@@ -155,7 +155,7 @@ bot.on('message', function(msg) {
 	}
  }
   
-  if(reg_exps['no'].test(msg.text) && !is_answered) {
+  if(reg_exps['no'].test(text) && !is_answered) {
 		if (state == 'simplesite_question_good_experience_level_1') {
 			answer_text = 'Тогда Вам следует использовать шаблон или фреймворк.\n'+
 						  'Шаблоны бывают платными и бесплатными. Сайты с платными шаблонами в интернете встречаются реже, чем с бесплатными.\n'+
