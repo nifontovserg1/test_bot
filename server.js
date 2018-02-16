@@ -197,7 +197,7 @@ function get_answer(text) {
 bot.on('message', function(msg) {
   const userId = msg.from.id, text = msg.text;
   logMessage({'type': 'question', 'text': text, 'time': timeConverter(msg.date), 'user': msg.from});
-
+  answer_text = get_answer(text);
   logMessage({'type': 'answer', 'text': answer_text, 'time': timeConverter(msg.date), 'user': msg.from});
   bot.sendMessage(userId, answer_text);
 });
