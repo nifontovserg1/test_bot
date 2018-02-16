@@ -76,9 +76,7 @@ function logMessage(message) {
 
 var state = null;
 
-bot.on('message', function(msg) {
-  const userId = msg.from.id, text = msg.text;
-  logMessage({'type': 'question', 'text': text, 'time': timeConverter(msg.date), 'user': msg.from});
+function get_answer(text) {
   var answer_text = 'К сожалению, затрудняюсь ответить', is_answered = false;
   if(reg_exps['hi'].test(text) && !is_answered) {
 	answer_text = 'Здравствуйте. Чему могу Вам помочь?';
@@ -193,6 +191,13 @@ bot.on('message', function(msg) {
 			is_answered = true;			
 		}
   } 
+  return answer_text;
+}
+
+bot.on('message', function(msg) {
+  const userId = msg.from.id, text = msg.text;
+  logMessage({'type': 'question', 'text': text, 'time': timeConverter(msg.date), 'user': msg.from});
+
   logMessage({'type': 'answer', 'text': answer_text, 'time': timeConverter(msg.date), 'user': msg.from});
   bot.sendMessage(userId, answer_text);
 });
