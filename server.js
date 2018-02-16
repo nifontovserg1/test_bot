@@ -5,17 +5,20 @@ var mongo = require('mongodb').MongoClient;
 
 var reg_exps = {'hi': /^Здравствуйте\s*(.|!)?$|Привет(ствую)?\s*(.|!)?$|Добрый\s*(день|вечер)\s*(.|!)?$|Доброе утро\s*(.|!)?$|Доброго времени суток\s*(.|!)?$/}
 
+function formate(value) {
+	return value<10?('0'+value):value;
+}
+
 function timeConverter(UNIX_timestamp) {
 	var a = new Date(UNIX_timestamp * 1000);
+	a.setHours(a.getHours()+3)
     var year = a.getFullYear();
-	var month =a.getMonth()+1;
-	if(month<10) {
-	  month = '0'+month;
-	}
-	var date = a.getDate();
-	var hour = a.getHours();
-	var min = a.getMinutes();
-	var sec = a.getSeconds();
+	var month = formate(a.getMonth()+1);
+
+	var date = formate(a.getDate());
+	var hour = formate(a.getHours());
+	var min = formate(a.getMinutes());
+	var sec = formate(a.getSeconds());
 	var time = date + '.' + month + '.' + year + ' ' + hour + ':' + min + ':' + sec ;
 	return time;	
 }
