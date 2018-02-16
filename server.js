@@ -71,7 +71,7 @@ bot.on('message', function(msg) {
 		logMessage({'type': 'question', 'text': msg.text, 'time': timeConverter(msg.date), 'user': msg.from});
 		var answer_text = 'К сожелению, затрудняюсь ответить';
 		if(reg_exps['hi'].test(msg.text)) {
-			answer_text = 'Здравствуйте. Чему могу помочь?';
+			answer_text = 'Здравствуйте. Чему могу Вам помочь?';
 		}
 		logMessage({'type': 'answer', 'text': msg.text, 'time': timeConverter(msg.date), 'user': msg.from});
 		bot.sendMessage(userId, answer_text);
@@ -108,7 +108,7 @@ http.createServer(function (req, res) {
   mongo.connect('mongodb://admin:admin@ds235778.mlab.com:35778/heroku_2l11m0jl',  function(error, db){
 
 	var collection = db.db('heroku_2l11m0jl').collection('messages');
-	collection.find().toArray(function(err, results) {
+	collection.find().sort({_id : -1}).toArray(function(err, results) {
 		res.write('<div style="margin-bottom: 10px"> Размер истории: '+results.length+' <button style="margin-left: 10px" id="rel_btn"> Обновить </button> </div>');
 		if(results.length) {
 			res.write('<table>'+
