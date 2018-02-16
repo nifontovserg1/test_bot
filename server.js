@@ -212,7 +212,7 @@ http.createServer(function (req, res) {
 			res.write('<table>'+
 						'<tr>'+
 							'<th>Время</th>'+
-							'<th>Текст</th>'+
+							'<th style="text-align: left;">Текст</th>'+
 							'<th>Пользователь</th>'+
 							'<th>Тип</th>'+
 						'</tr>');
