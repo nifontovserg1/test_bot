@@ -94,15 +94,11 @@ bot.on('message', function(msg) {
   
   if(is_number(msg.text)) {
 	var answer_number = parseInt(msg.text);
-	switch(state) {
-		case 'site_type_request':
-			switch(answer_number) {
-				case 1:
-					state = 'landing_question_level_1';
-					answer_text = 'Вы хорошо знакомы с HTML/CSS/JS и имеются ли у Вас навыки дизайна?';
-					break;
-			}
-			break;
+	if(state == 'site_type_request') {
+		if(answer_number == 1) {
+			state = 'landing_question_level_1';
+			answer_text = 'Вы хорошо знакомы с HTML/CSS/JS и имеются ли у Вас навыки дизайна?';
+		}
 	}
   }
 
