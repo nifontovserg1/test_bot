@@ -73,7 +73,7 @@ bot.on('message', function(msg) {
 		if(reg_exps['hi'].test(msg.text)) {
 			answer_text = 'Здравствуйте. Чему могу Вам помочь?';
 		}
-		logMessage({'type': 'answer', 'text': msg.text, 'time': timeConverter(msg.date), 'user': msg.from});
+		logMessage({'type': 'answer', 'text': answer_text, 'time': timeConverter(msg.date), 'user': msg.from});
 		bot.sendMessage(userId, answer_text);
 });
 
