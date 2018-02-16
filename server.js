@@ -3,7 +3,9 @@ var token = '541428253:AAEQXJyWUkj79-hZzWMe4QYUk3n6OHxw6lQ';
 var bot = new TelegramBot(token, {polling: true});
 var mongo = require('mongodb').MongoClient;
 
-var reg_exps = {'hi': /^Здравствуйте\s*(.|!)?$|Привет(ствую)?\s*(.|!)?$|Добрый\s*(день|вечер)\s*(.|!)?$|Доброе утро\s*(.|!)?$|Доброго времени суток\s*(.|!)?$/}
+var reg_exps = {'hi': /^Здравствуйте\s*(.|!)?$|Привет(ствую)?\s*(.|!)?$|Добрый\s*(день|вечер)\s*(.|!)?$|Доброе утро\s*(.|!)?$|Доброго времени суток\s*(.|!)?$/,
+				'site_build_request': /(((Я\s+)?(хочу|планирую))|((Мне\s+)?(надо|хотелось бы|требуется)))\s+(сделать|создать|разработать|спроектировать)\s+(веб-)?сайт/,
+				}
 
 function formate(value) {
 	return value<10?('0'+value):value;
