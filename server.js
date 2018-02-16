@@ -79,9 +79,10 @@ var state = null;
 bot.on('message', function(msg) {
   const userId = msg.from.id;
   logMessage({'type': 'question', 'text': msg.text, 'time': timeConverter(msg.date), 'user': msg.from});
-  var answer_text = 'К сожалению, затрудняюсь ответить';
-  if(reg_exps['hi'].test(msg.text)) {
+  var answer_text = 'К сожалению, затрудняюсь ответить', is_answered = false;
+  if(reg_exps['hi'].test(msg.text) && !is_answered) {
 	answer_text = 'Здравствуйте. Чему могу Вам помочь?';
+	is_answered = true;
   }
 
   if(reg_exps['site_build_request'].test(msg.text)) {
@@ -91,14 +92,16 @@ bot.on('message', function(msg) {
 					'\t2. Лэндинг;\n'+
 					'\t3. Сайт с использованием CMS;\n'+
 					'\t4. Сложное веб-приложение, веб-портал;.\n';
+	is_answered = true;					
   }
   
-  if(is_number(msg.text)) {
+  if(is_number(msg.text) && !is_answered) {
 	var answer_number = parseInt(msg.text);
 	if (state ==  'site_type_request') {
 		if(answer_number == 1) {
+			answer_text = 'Вы хорошо знакомы с HTML/CSS/JS и имеются ли у Вас навыки дизайна?';
 			state = 'simplesite_question_level_1';
-			answer_text = 'Вы хорошо знакомы с HTML/CSS/JS и имеются ли у Вас навыки дизайна?';				
+			is_answered = true;				
 		}
 		if(answer_number == 2) {
 			answer_text = 'Лэндинги сейчас разрабатываются с использованием конструкторов. \n'+
@@ -109,25 +112,28 @@ bot.on('message', function(msg) {
 						  'http://tilda.cc/ru/ \n'+
 						  'https://flexbe.ru/ \n'+
 						  'Удачи!';
-			state = null;				
+			state = null;	
+			is_answered = true;					
 		}
     }
   }
  
-  if(reg_exps['yes'].test(msg.text)) {
+  if(reg_exps['yes'].test(msg.text) && !is_answered) {
 	if (state == 'simplesite_question_level_1') {
+		answer_text = 'Готовы ли Вы потратить больше одного дня на создание сайта?';
 		state = 'simplesite_question_good_experience_level_1';
-		answer_text = 'Готовы ли Вы потратить больше одного дня на создание сайта?';			
+		is_answered = true;
 	}
 	if (state == 'simplesite_question_good_experience_level_1') {
 		answer_text = 'Тогда разрабатывайте сайт самостоятельно без фреймворков, CMS и библиотек.\n'+
 					  'В итоге у Вас получится сайт, сделанный конкретно под Ваши требования и умеющий уникальный дизайн.\n'+
 					  'Удачи!';
 		state = null;
+		is_answered = true;
 	}
  }
   
-  if(reg_exps['no'].test(msg.text)) {
+  if(reg_exps['no'].test(msg.text) && !is_answered) {
 		if (state == 'simplesite_question_good_experience_level_1') {
 			answer_text = 'Тогда Вам следует использовать шаблон или фреймворк.\n'+
 						  'Шаблоны бывают платными и бесплатными. Сайты с платными шаблонами в интернете встречаются реже, чем с бесплатными.\n'+
@@ -144,7 +150,8 @@ bot.on('message', function(msg) {
 						  'https://gumbyframework.com/'+
 						  'https://metroui.org.ua/'+
 						  'Удачи!';
-			state = null;		
+			state = null;
+			is_answered = true;			
 		}
 		
 		if (state == 'simplesite_question_level_1') {
@@ -160,7 +167,8 @@ bot.on('message', function(msg) {
 						  'http://www.setup.ru  \n'+
 						  'https://www.ucoz.ru  \n'+
 						  'Удачи!';
-			state = null;		
+			state = null;
+			is_answered = true;			
 		}
   } 
   logMessage({'type': 'answer', 'text': answer_text, 'time': timeConverter(msg.date), 'user': msg.from});
