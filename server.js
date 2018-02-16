@@ -4,8 +4,9 @@ var bot = new TelegramBot(token, {polling: true});
 var mongo = require('mongodb').MongoClient;
 
 var reg_exps = {'hi': /^\s*(З|з)дравствуйте\s*(.|!)?$|(П|п)ривет(ствую)?\s*(.|!)?$|(Д|д)обрый\s*(день|вечер)\s*(.|!)?$|(Д|д)оброе утро\s*(.|!)?$|(Д|д)оброго времени суток\s*(.|!)?\s*$/,
-				'site_build_request': /((((Я|я)\s+)?((Х|х)очу|планирую))|(((М|м)не\s+)?((Н|н)адо|(Х|х)отелось (бы)?|(Т|т)ребуется)))\s+(сделать|создать|разработать|спроектировать)\s+(веб-)?сайт/,
-				}
+				'site_build_request': /^\s*((((Я|я)\s+)?((Х|х)очу|планирую))|(((М|м)не\s+)?((Н|н)адо|(Х|х)отелось (бы)?|(Т|т)ребуется)))\s+(сделать|создать|разработать|спроектировать)\s+(веб-)?сайт\s*$/,
+				'yes': /^\s*(Д|д)а|(К|к)кончено|(Е|е)стественно\s*$/,
+				'no': /^\s*(Н|н)ет?|(С|с)средне|(Т|т)ак себе|(П|п)лохо|(П|п)оверхностно\s*$/,}
 
 function is_number(value) {
 	return !isNaN(value.toString().trim());
@@ -86,10 +87,10 @@ bot.on('message', function(msg) {
   if(reg_exps['site_build_request'].test(msg.text)) {
 	state = 'site_type_request';
 	answer_text = 'Какой сайт Вы сделать? Выберите один из четырех вариантов ответа.\n'+
-					'\t1. Одностраничный сайт, сайт-визитка\n'+
-					'\t2. Лэндинг\n'+
-					'\t3. Сайт с использованием CMS\n'+
-					'\t4. Сложное веб-приложение, веб-портал.\n';
+					'\t1. Одностраничный сайт, сайт-визитка;\n'+
+					'\t2. Лэндинг;\n'+
+					'\t3. Сайт с использованием CMS;\n'+
+					'\t4. Сложное веб-приложение, веб-портал;.\n';
   }
   
   if(is_number(msg.text)) {
@@ -102,6 +103,15 @@ bot.on('message', function(msg) {
 	}
   }
 
+  if(reg_exps['yes'].test(msg.text)) {
+	switch(state) {
+		case 'landing_question_level_1':
+			state = 'landing_question_good_experience_level_1';
+			answer_text = 'Готовы ли Вы потратить больше одного дня на создание сайта?';			
+			break;
+	}
+  }
+  
   logMessage({'type': 'answer', 'text': answer_text, 'time': timeConverter(msg.date), 'user': msg.from});
   bot.sendMessage(userId, answer_text);
 });
