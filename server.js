@@ -69,7 +69,7 @@ bot.on('message', function(msg) {
   const userId = msg.from.id, date = msg.date, 
 		first_name = msg.from.first_name, last_name = msg.from.last_name, user_name = msg.from.username, msg_text = msg.text;
 		logMessage({'type': 'question', 'text': msg.text, 'time': timeConverter(msg.date), 'user': msg.from});
-		var answer_text = 'К сожелению, затрудняюсь ответить';
+		var answer_text = 'К сожалению, затрудняюсь ответить';
 		if(reg_exps['hi'].test(msg.text)) {
 			answer_text = 'Здравствуйте. Чему могу Вам помочь?';
 		}
