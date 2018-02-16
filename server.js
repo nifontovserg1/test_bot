@@ -115,6 +115,28 @@ bot.on('message', function(msg) {
 			state = null;	
 			is_answered = true;					
 		}
+		
+		if(answer_number == 3) {
+			answer_text = 'Наиболее популярные CMS \n'+
+						  'https://www.1c-bitrix.ru/ \n'+
+						  'https://ru.wordpress.org/\n'+
+						  'https://www.joomla.org/ \n'+
+						  'ui-cms.com \n'+
+						  'Удачи!';			
+			state = null;	
+			is_answered = true;				
+		}
+		
+		if(answer_number == 4) {
+			answer_text = 'Для разработки сложных веб-приложений и порталов используются следующие фрейворки: \n'+
+						  'http://laravel.com/ (PHP) \n'+
+						  'http://yiiframework.com/ (PHP) \n'+
+						  'https://spring.io/ (Java) / \n'+
+						  'https://www.asp.net/ (C#) \n'+
+						  'Удачи!';			
+			state = null;	
+			is_answered = true;				
+		}		
     }
   }
  
