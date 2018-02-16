@@ -113,7 +113,56 @@ bot.on('message', function(msg) {
 		}
     }
   }
+ 
+  if(reg_exps['yes'].test(msg.text)) {
+	if (state == 'simplesite_question_level_1') {
+		state = 'simplesite_question_good_experience_level_1';
+		answer_text = 'Готовы ли Вы потратить больше одного дня на создание сайта?';			
+	}
+	if (state == 'simplesite_question_good_experience_level_1') {
+		answer_text = 'Тогда разрабатывайте сайт самостоятельно без фреймворков, CMS и библиотек.\n'+
+					  'В итоге у Вас получится сайт, сделанный конкретно под Ваши требования и умеющий уникальный дизайн.\n'+
+					  'Удачи!';
+		state = null;
+	}
+ }
   
+  if(reg_exps['no'].test(msg.text)) {
+		if (state == 'simplesite_question_good_experience_level_1') {
+			answer_text = 'Тогда Вам следует использовать шаблон или фреймворк.\n'+
+						  'Шаблоны бывают платными и бесплатными. Сайты с платными шаблонами в интернете встречаются реже, чем с бесплатными.\n'+
+						  'Следовательно, выбирая платный шаблон, может увеличиться уникальность дизайна.\n'+
+						  'Но для  повышения уникальности дизайна также можно отредактировать бесплатный шаблон.\n'+
+						  'Шаблоны можно скачать с данных сайтов:\n'+
+						  'http://html-template.ru/ \n'+
+						  'http://www.tooplate.com/ \n'+
+						  'https://templated.co/ \n'+
+						  'https://html-templates.info/ \n'+
+						  'Популярные фреймворки: \n'+
+						  'http://getbootstrap.com/ \n'+
+						  'https://purecss.io/ \n'+
+						  'https://gumbyframework.com/'+
+						  'https://metroui.org.ua/'+
+						  'Удачи!';
+			state = null;		
+		}
+		
+		if (state == 'simplesite_question_level_1') {
+			answer_text = 'Тогда Вам следует использовать конструктор сайтов.\n'+
+						  'Для улучшения уникальности дизайна можно обратиться к веб-дизайнеру.\n'+
+						  'Конструкторы сайтов:\n'+
+						  'http://ru.wix.com/ \n'+
+						  'http://nethouse.ru/ \n'+
+						  'https://ukit.com \n'+
+						  'https://umi.ru/ \n'+
+						  'https://www.jimdo.com/ \n'+
+						  'https://www.redham.ru \n'+
+						  'http://www.setup.ru  \n'+
+						  'https://www.ucoz.ru  \n'+
+						  'Удачи!';
+			state = null;		
+		}
+  } 
   logMessage({'type': 'answer', 'text': answer_text, 'time': timeConverter(msg.date), 'user': msg.from});
   bot.sendMessage(userId, answer_text);
 });
