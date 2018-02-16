@@ -8,7 +8,7 @@ var reg_exps = {'hi': /^\s*(З|з)дравствуйте\s*(.|!)?$|(П|п)рив
 				}
 
 function is_number(value) {
-	return !isNaN(t.toString().trim());
+	return !isNaN(value.toString().trim());
 }
 				
 function formate(value) {
