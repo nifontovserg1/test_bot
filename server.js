@@ -1,10 +1,9 @@
 var TelegramBot = require('node-telegram-bot-api');
 var token = '541428253:AAEQXJyWUkj79-hZzWMe4QYUk3n6OHxw6lQ'; 
 var bot = new TelegramBot(token, {polling: true});
-//var fs = require('fs')
-
-
 var mongo = require('mongodb').MongoClient;
+
+var reg_exps = {'hi': /^Здравствуйте\s*(.|!)?$|Привет(ствую)?\s*(.|!)?$|Добрый\s*(день|вечер)\s*(.|!)?$|Доброе утро\s*(.|!)?$|Доброго времени суток\s*(.|!)?$/}
 
 function timeConverter(UNIX_timestamp) {
 	var a = new Date(UNIX_timestamp * 1000);
@@ -70,8 +69,12 @@ bot.on('message', function(msg) {
   const userId = msg.from.id, date = msg.date, 
 		first_name = msg.from.first_name, last_name = msg.from.last_name, user_name = msg.from.username, msg_text = msg.text;
 		logMessage({'type': 'question', 'text': msg.text, 'time': timeConverter(msg.date), 'user': msg.from});
-		
-		bot.sendMessage(userId, 'Received your message: '+userId+' '+first_name+' '+last_name+' '+user_name+' '+timeConverter(date)+' '+msg_text+' ');
+		var answer_text = 'К сожелению, затрудняюсь ответить';
+		if(reg_exps['hi'].test(msg.text)) {
+			answer_text = 'Здравствуйте. Чему могу помочь?';
+		}
+		logMessage({'type': 'answer', 'text': msg.text, 'time': timeConverter(msg.date), 'user': msg.from});
+		bot.sendMessage(userId, answer_text);
 });
 
 
