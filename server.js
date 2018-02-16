@@ -172,7 +172,7 @@ bot.on('message', function(msg) {
 		}
   } 
   logMessage({'type': 'answer', 'text': answer_text, 'time': timeConverter(msg.date), 'user': msg.from});
-  bot.sendMessage(userId, answer_text);
+  bot.sendMessage(userId, answer_text+state);
 });
 
 
