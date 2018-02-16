@@ -2,6 +2,7 @@ var TelegramBot = require('node-telegram-bot-api');
 var token = '541428253:AAEQXJyWUkj79-hZzWMe4QYUk3n6OHxw6lQ'; 
 var bot = new TelegramBot(token, {polling: true});
 var mongo = require('mongodb').MongoClient;
+var functions = require('./functions');
 
 var reg_exps = {'hi': /^\s*(З|з)дравствуйте\s*(.|!)?$|(П|п)ривет(ствую)?\s*(.|!)?$|(Д|д)обрый\s*(день|вечер)\s*(.|!)?$|(Д|д)оброе утро\s*(.|!)?$|(Д|д)оброго времени суток\s*(.|!)?\s*$/,
 				'site_build_request': /^\s*((((Я|я)\s+)?((Х|х)очу|планирую))|(((М|м)не\s+)?((Н|н)адо|(Х|х)отелось (бы)?|(Т|т)ребуется)))\s+(сделать|создать|разработать|спроектировать)\s+(веб-)?сайт\s*$/,
