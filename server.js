@@ -71,15 +71,23 @@ function logMessage(message) {
 
 
 bot.on('message', function(msg) {
-  const userId = msg.from.id, date = msg.date, 
-		first_name = msg.from.first_name, last_name = msg.from.last_name, user_name = msg.from.username, msg_text = msg.text;
-		logMessage({'type': 'question', 'text': msg.text, 'time': timeConverter(msg.date), 'user': msg.from});
-		var answer_text = 'К сожалению, затрудняюсь ответить';
-		if(reg_exps['hi'].test(msg.text)) {
-			answer_text = 'Здравствуйте. Чему могу Вам помочь?';
-		}
-		logMessage({'type': 'answer', 'text': answer_text, 'time': timeConverter(msg.date), 'user': msg.from});
-		bot.sendMessage(userId, answer_text);
+  const userId = msg.from.id;
+  logMessage({'type': 'question', 'text': msg.text, 'time': timeConverter(msg.date), 'user': msg.from});
+  var answer_text = 'К сожалению, затрудняюсь ответить';
+  if(reg_exps['hi'].test(msg.text)) {
+	answer_text = 'Здравствуйте. Чему могу Вам помочь?';
+  }
+
+  if(reg_exps['site_build_request'].test(msg.text)) {
+	answer_text = 'Какой сайт Вы сделать? Выберите один из четырех вариантов ответа.\n'+'
+					'\t1. Одностраничный сайт, сайт-визитка\n'+
+					'\t2. Лэндинг\n'+
+					'\t3. Сайт с использованием CMS\n'+
+					'\t4. Сложное веб-приложение, веб-портал.\n';
+  }
+
+  logMessage({'type': 'answer', 'text': answer_text, 'time': timeConverter(msg.date), 'user': msg.from});
+  bot.sendMessage(userId, answer_text);
 });
 
 
