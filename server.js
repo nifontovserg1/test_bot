@@ -95,46 +95,39 @@ bot.on('message', function(msg) {
   
   if(is_number(msg.text)) {
 	var answer_number = parseInt(msg.text);
-	switch(state) {
-		case 'site_type_request':
-			switch(answer_number) {
-				case 1:
-					state = 'simplesite_question_level_1';
-					answer_text = 'Вы хорошо знакомы с HTML/CSS/JS и имеются ли у Вас навыки дизайна?';				
-					break;
-				case 2:
-					answer_text = 'Лэндинги сейчас разрабатываются с использованием конструкторов. \n'+
-								  'Конструкторы лэндигов: \n'+
-								  'http://lpmotor.ru/ \n'+
-								  'https://lpgenerator.ru/ \n'+
-								  'https://platformalp.ru/ \n'+
-								  'http://tilda.cc/ru/ \n'+
-								  'https://flexbe.ru/ \n'+
-								  'Удачи!';
-					state = null;				
-			}
-			break;
-	}
+	if (state ==  'site_type_request') {
+		if(answer_number == 1) {
+			state = 'simplesite_question_level_1';
+			answer_text = 'Вы хорошо знакомы с HTML/CSS/JS и имеются ли у Вас навыки дизайна?';				
+		}
+		if(answer_number == 2) {
+			answer_text = 'Лэндинги сейчас разрабатываются с использованием конструкторов. \n'+
+						  'Конструкторы лэндигов: \n'+
+						  'http://lpmotor.ru/ \n'+
+						  'https://lpgenerator.ru/ \n'+
+						  'https://platformalp.ru/ \n'+
+						  'http://tilda.cc/ru/ \n'+
+						  'https://flexbe.ru/ \n'+
+						  'Удачи!';
+			state = null;				
+		}
   }
 
   if(reg_exps['yes'].test(msg.text)) {
-	switch(state) {
-		case 'simplesite_question_level_1':
-			state = 'simplesite_question_good_experience_level_1';
-			answer_text = 'Готовы ли Вы потратить больше одного дня на создание сайта?';			
-			break;
-		case 'simplesite_question_good_experience_level_1':
-			answer_text = 'Тогда разрабатывайте сайт самостоятельно без фреймворков, CMS и библиотек.\n'+
-						  'В итоге у Вас получится сайт, сделанный конкретно под Ваши требования и умеющий уникальный дизайн.\n'+
-						  'Удачи!';
-			state = null;
-			break;
+	if (state == 'simplesite_question_level_1') {
+		state = 'simplesite_question_good_experience_level_1';
+		answer_text = 'Готовы ли Вы потратить больше одного дня на создание сайта?';			
 	}
-  }
+	if (state == 'simplesite_question_good_experience_level_1') {
+		answer_text = 'Тогда разрабатывайте сайт самостоятельно без фреймворков, CMS и библиотек.\n'+
+					  'В итоге у Вас получится сайт, сделанный конкретно под Ваши требования и умеющий уникальный дизайн.\n'+
+					  'Удачи!';
+		state = null;
+	}
+ }
   
   if(reg_exps['no'].test(msg.text)) {
-	switch(state) {
-		case 'simplesite_question_good_experience_level_1', :
+		if (state == 'simplesite_question_good_experience_level_1') {
 			answer_text = 'Тогда Вам следует использовать шаблон или фреймворк.\n'+
 						  'Шаблоны бывают платными и бесплатными. Сайты с платными шаблонами в интернете встречаются реже, чем с бесплатными.\n'+
 						  'Следовательно, выбирая платный шаблон, может увеличиться уникальность дизайна.\n'+
@@ -151,8 +144,9 @@ bot.on('message', function(msg) {
 						  'https://metroui.org.ua/'+
 						  'Удачи!';
 			state = null;		
-			break;
-		case 'simplesite_question_level_1':
+		}
+		
+		if (state == 'simplesite_question_level_1') {
 			answer_text = 'Тогда Вам следует использовать конструктор сайтов.\n'+
 						  'Для улучшения уникальности дизайна можно обратиться к веб-дизайнеру.\n'+
 						  'Конструкторы сайтов:\n'+
@@ -166,8 +160,7 @@ bot.on('message', function(msg) {
 						  'https://www.ucoz.ru  \n'+
 						  'Удачи!';
 			state = null;		
-			break;
-	}
+		}
   }
   
   logMessage({'type': 'answer', 'text': answer_text, 'time': timeConverter(msg.date), 'user': msg.from});
