@@ -7,6 +7,10 @@ var reg_exps = {'hi': /^\s*(З|з)дравствуйте\s*(.|!)?$|(П|п)рив
 				'site_build_request': /((((Я|я)\s+)?((Х|х)очу|планирую))|(((М|м)не\s+)?((Н|н)адо|(Х|х)отелось (бы)?|(Т|т)ребуется)))\s+(сделать|создать|разработать|спроектировать)\s+(веб-)?сайт/,
 				}
 
+function is_number(value) {
+	return !isNaN(t.toString().trim());
+}
+				
 function formate(value) {
 	return value<10?('0'+value):value;
 }
@@ -69,6 +73,7 @@ function logMessage(message) {
 	}); 
 }
 
+var state = null;
 
 bot.on('message', function(msg) {
   const userId = msg.from.id;
@@ -79,11 +84,26 @@ bot.on('message', function(msg) {
   }
 
   if(reg_exps['site_build_request'].test(msg.text)) {
+	state = 'site_type_request';
 	answer_text = 'Какой сайт Вы сделать? Выберите один из четырех вариантов ответа.\n'+
 					'\t1. Одностраничный сайт, сайт-визитка\n'+
 					'\t2. Лэндинг\n'+
 					'\t3. Сайт с использованием CMS\n'+
 					'\t4. Сложное веб-приложение, веб-портал.\n';
+  }
+  
+  if(is_number(msg.text)) {
+	var answer_number = parseInt(msg.text);
+	switch(state) {
+		case 'site_type_request':
+			switch(answer_number) {
+				case 1:
+					state = 'landing_question_level_1';
+					answer_text = 'Вы хорошо знакомы с HTML/CSS/JS и имеются ли у Вас навыки дизайна?';
+					break;
+			}
+			break;
+	}
   }
 
   logMessage({'type': 'answer', 'text': answer_text, 'time': timeConverter(msg.date), 'user': msg.from});
